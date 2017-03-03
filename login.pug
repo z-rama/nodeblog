@@ -1,0 +1,38 @@
+html
+  head
+    link(rel='stylesheet', href='style/css/login.css', type='text/css')
+  body
+    img.bg(src='')
+    .login-bg
+      .blur
+        img.form-bg(src='')
+      #login
+        .login-header
+          .logo
+            span.color LOGO HERE
+        form(name='loginform', method='post')
+          input#hash(type='hidden', name='data[hash]')
+          input(type='hidden', name='data[return]', value='')
+          table
+            tr
+              td
+                input#email(type='text', name='data[email]', placeholder='E-mail', value='', tabindex='1')
+            tr
+              td
+                input(type='password', name='data[password]', placeholder='Password', value='', tabindex='2')
+            tr
+              td
+                label.remember-me(for='remember_me')
+                  input#remember_me(type='checkbox', tabindex='3', name='data[remember]', value='1')
+                  | Remember me
+            tr
+              td(style='text-align: center; color: #b9b9b9;')
+                input(type='submit', value='Login', tabindex='4')
+                span
+                  | or   
+                  a.sign-up-btn(href='signup.pug', tabindex='5') Sign up
+        .login-footer
+          span
+            | Forgot your password? 
+            a(href='/auth/password-recovery') Recover it here
+    script(type='text/javascript', src='style/js/signup.js')

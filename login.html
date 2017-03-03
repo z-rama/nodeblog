@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="style/css/signup.css" type="text/css">
+
+</head>
+<body>
+
+
+
+
+
+<img src="" class="bg">
+<div class="login-bg">
+  <div class="blur">
+    <img src="" class="form-bg">
+  </div>
+  <div id="login">
+    <div class="login-header">
+      <div class="logo"><span class="color">LOGO HERE</span> </div>
+    </div>
+    <form name="loginform" method="post">
+      <input type="hidden" name="data[hash]" id="hash" />
+      <input type="hidden" name="data[return]" value="" />
+      <table>
+      <tr>
+        <td><input id="email" type="text" name="data[email]" placeholder="E-mail" value="" tabindex="1"></td>
+      </tr>
+      <tr>
+        <td><input type="password" name="data[password]" placeholder="Password" value="" tabindex="2"></td>
+      </tr>
+      <tr>
+        <td>
+          <label class="remember-me" for="remember_me"><input type="checkbox" id="remember_me" tabindex="3" name="data[remember]" value="1" />Remember me</label>
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align: center; color: #b9b9b9;">
+          <input type="submit" value="Login" tabindex="4" /><span>&nbsp;or&nbsp;&nbsp;&nbsp;<a href="signup2.html" class="sign-up-btn" tabindex="5">Sign up</a></span>
+        </td>
+      </tr>
+      </table>
+    </form>
+    <div class="login-footer">
+      <span>Forgot your password? <a href="/auth/password-recovery">Recover it here</a></span>
+    </div>
+  </div>
+</div>
+
+ <script type="text/javascript" src="style/js/signup.js"></script>
+</body>
+</html>
