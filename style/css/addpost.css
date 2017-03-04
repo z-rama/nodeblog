@@ -1,0 +1,39 @@
+/*add page*/
+#backgroundAddPosts {
+  background: url(../img/grumpyspace.jpg) no-repeat center fixed; 
+  background-size: cover;
+  padding-top: 150px;
+  height: 90%;
+}
+
+#containerAddPosts {
+  width: 400px;
+  margin:auto
+}
+
+.inputfield {
+  width: 95%;
+  margin: 0px 10px;
+  border: 1px solid #f43691;
+}
+
+#addpost{
+  background-color: white;
+  color: #f44336;
+  border: 2px solid grey;
+  border-radius: 5px;
+}
+
+#btn {
+  background-color: #f43691;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  width: 75px;
+  float: right;
+}
+/*add end*/
+

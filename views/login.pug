@@ -1,0 +1,66 @@
+html
+	head
+		title Login Page
+		include ../style/pug/head-tags.pug
+	body#backgroundlogin
+		include ../style/pug/header.pug
+
+		form.login(action="/login" method="post" name="loginForm" onsubmit="return validate()") 
+			fieldset
+			legend.legend Login
+			.input
+				input(type='text', placeholder='Username' name='username' class='inputfield1')
+				span
+					i.fa.fa-envelope-o
+			.input
+				input(type='password', placeholder='Password' name='password' class='inputfield1')
+				span
+					i.fa.fa-lock
+			|  
+			button.submit(type='submit')
+					i.fa.fa-long-arrow-right
+
+
+		script.
+			function validate() {
+
+				if( document.forms.loginForm.username.value == "" ) {
+					alert( "Gimme ur username!" );
+					document.loginForm.username.focus() ;
+					return false;
+				}
+
+				if( document.forms.loginForm.password.value == "" ) {
+					alert( "Now gimme ur password!" );
+					document.loginForm.password.focus() ;
+					return false;
+				}
+
+				return( true );
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//- body#backgroundlogin
+	//- 	h1 Welcome beauty
+	//- 	h3 Please fill in your log-in:
+	//- 	form#formlogin
+	//- 		| First name: 
+	//- 		input(id="formfirstname" type='text', name='firstname')
+	//- 		|  Last name: 
+	//- 		input(id="formlastname" type='text', name='lastname')
+	//- 		|  
+	//- 		input(class="button1" type='submit', value='Submit')
+

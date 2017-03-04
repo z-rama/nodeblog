@@ -1,0 +1,13 @@
+html
+	head
+		title View all posts
+		include ../style/pug/head-tags.pug
+	body
+		include ../style/pug/header.pug
+		#backgroundShowPosts
+			#containerShowPosts
+				each post in messages
+					.post
+						a(href="/post/"+post.id) #{post.title}
+						h6 by #{post.user.username}
+						p #{post.content}

@@ -5,21 +5,25 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const bcrypt = require('bcrypt')
 
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize(`postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost/nodeblog`);
+
+var Sequelize = require('sequelize');
+var sequelize = new Sequelize('postgres://' + process.env.POSTGRES_USER + ':' + process.env.POSTGRES_PASSWORD + '@localhost/nodeblog'); 
 
 app.use(express.static('style'));
-app.use(cookieParser());
+app.use(cookieParser())
 app.use(bodyParser.urlencoded({extended: true})); 
 app.use(bodyParser.json()); 
 
-//view engine setup
-app.set('views', __dirname, + '/views'); 
-app.set('view engine', 'html');
+
+app.set('views', './views'); 
+app.set('view engine', 'pug');
+
+
 
 app.use(session({
-	secret: 'yo momma',
+	secret: 'tell me your secret',
 	resave: true,
 	saveUninitialized: false
 }));
@@ -36,7 +40,7 @@ var Message = sequelize.define('message', {
 	content: Sequelize.STRING(500),
 })
 
-//mandem send dem comments 
+//mandem send dem comments
 var Comment = sequelize.define('comment', {
 	content: Sequelize.STRING
 })
@@ -62,10 +66,10 @@ app.get ('/login', (request, response) => {
 app.post('/login', (req, res) => {
 	console.log(req.body.username)
 	if (req.body.username.length === 0){
-		res.redirect('/login/?message=' + encodeURIComponent("gimme ur username"))
+		res.redirect('/login/?message=' + encodeURIComponent("Please fill out your username."))
 	}
 	if (req.body.password.length === 0){
-		res.redirect('/login/?message=' + encodeURIComponent("now gimme ur password"))
+		res.redirect('/login/?message=' + encodeURIComponent("Please fill out your password."))
 	}
 
 	User.findOne({
@@ -79,36 +83,39 @@ app.post('/login', (req, res) => {
 				req.session.user = user;
 				res.redirect('/profile/'+user.username)
 			} else {
-				res.redirect('/login/?message=' + encodeURIComponent("nah fam, gimme ur real password. dis ain't ur password."))
+				res.redirect('/login/?message=' + encodeURIComponent("Invalid username or password."))
 			}
 		})
 	})
 })
 
-
 app.get ('/signup', (request, response) => {
-	response.render('signup', {user: request.session.user}); // last part is added because of the start of the session
+	response.render('signup', {user: request.session.user}); 
 });
 
 
-// app.post('/signup', function(req, res){
-// 	bcrypt.hash(req.body.password, 8, function(err, hash) {
 
-// 		User.create({ //changed to database name
-// 			username: req.body.username,
-// 			password: hash,
-// 			email: req.body.email
-// 		})
+app.post('/signup', function(req, res){
+	console.log('signup post request is working')  
+	bcrypt.hash(req.body.password, 8, function(err, hash) {
+
+		User.create({ 
+			username: req.body.username,
+			password: hash,
+			email: req.body.email
+		})
 	
-// 	.then(()=>{
-// 		res.redirect('/login'); 
-// 	})
-// 	})
-// });
+	.then(()=>{
+		res.redirect('/login'); 
+	})
+	})
+});
+
 
 app.get ('/addpost', (req, res) => {
 	res.render('addPost', {user:req.session.user});
 });
+
 
 app.get ('/allposts', (request, response) => {
 	Message.findAll({order:[['createdAt', 'DESC']], include: [User, Comment]})
@@ -120,7 +127,6 @@ app.get ('/allposts', (request, response) => {
 		})
 	})
 });
-
 
 app.post('/allposts', (req, res) => {
 	
@@ -171,7 +177,6 @@ app.post('/postcomment/:postId', (req, res) =>{
 	})
 })
 
-
 app.get ('/profile/:userName', (request, response) => {
 	User.findOne({
 		where: {username: request.params.userName},
@@ -180,7 +185,7 @@ app.get ('/profile/:userName', (request, response) => {
 	.then(function(user){
 		console.log(user)
 		if (user === null){
-			response.redirect('/ainthere')
+			response.redirect('/notexist')
 		} 
 		var userURL = user
 		Message.findAll({
@@ -189,7 +194,7 @@ app.get ('/profile/:userName', (request, response) => {
 			where: {userId: user.id}
 		})
 		.then(function(result){
-		
+			
 			var allMessages = result;
 			Comment.findAll({include: [User, Message]})
 			.then(function(result){
@@ -199,24 +204,81 @@ app.get ('/profile/:userName', (request, response) => {
 	})
 });
 
-app.get('/ainthere', (req, res) =>{
-	res.render('ainthere')
+app.get('/notexist', (req, res) =>{
+	res.render('notexist')
 })
+
+
+
+
+app.get('/logout', function (req, res) {
+
+  req.session.destroy(function (error) {
+
+    if(error) {
+
+        throw error;
+
+    }
+      res.render('logout');
+
+  })
+
+})
+
 
 
 
 
 sequelize
 	.sync({force:true})
-
-
+	.then(function(){
+		return User.create({
+			username: "Gijs",
+			password: "koekie",
+			email: "skekkie@gmail.com"
+		})
+	})
+	.then(function(person){
+		return person.createMessage({
+			title: "Had pizza for breakfast",
+			content: "I rule the world.",
+		})
+	})
+	.then(function(){
+		return User.create({
+			username: "Jenny from the block",
+			password: "bronx",
+			email: "jlo@gmail.com"
+		})
+	})
+	.then(function(person){
+		return person.createComment({
+			content: "Gayyyyyy",
+			messageId: 1
+		})
+	})
+	.then(function(){
+		Message.create({
+			title: "Waddup",
+			content: "You got a rizla by any chance?",
+			userId: 2
+		})
+	})
+	.then(function(){
+		Comment.create({
+			content: "Imma beatcho ass!!",
+			messageId: 2,
+			userId: 1
+		})
+	})	
+	
 	.then(function(){
 
 		app.listen(3000, () => {
 
-			console.log('new phone, who dis?');
+			console.log('new phone who dis?');
 
 		});
 
 	})
-

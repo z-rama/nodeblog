@@ -1,0 +1,36 @@
+html
+	head
+		title Profile
+		include ../style/pug/head-tags.pug
+	body
+		include ../style/pug/header.pug
+		#background-profile
+			div
+				h1#name #{profileOfUser.username}
+			#profile-container
+				#profile-posts
+					each post in messages
+						.post
+							h1 #{post.title}
+							h6 by #{post.user.username}
+							p #{post.content}
+						.commentbox
+							each comment in comments
+								if comment.messageId == post.id
+									.comment
+										h6 #{comment.user.username}
+										p #{comment.content}
+							if user
+								form(action="/postcomment/"+messages.id method="post" class="commentform")
+									input(type="text" name="comment" class="inputfield")
+									input#btn3(type="submit" value="comment" name="commenting")
+							else
+								.post
+									h1 You gotta log in first before you can comment, y'feel me?
+									form(method="get" action="/login")
+										button#btn2(type="submit" value="login" name="redirect") Log in
+				#profile-followers
+					#side
+						h3 Yo wassup!
+						p #{profileOfUser.username} here. How you doin'?
+						p Thanks for checking my blog out. I appreciate. Peace out. 

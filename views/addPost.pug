@@ -1,0 +1,41 @@
+html
+	head
+		title Add a post
+		include ../style/pug/head-tags
+	body
+		include ../style/pug/header.pug
+		#backgroundAddPosts
+			#containerAddPosts
+				if user
+					form(action="/allposts" method="post" name="loginForm" onsubmit="return validate()")
+						fieldset#addpost
+							p Title
+							input(type="text" name="title" class="inputfield")
+							p Content
+							textarea(name="content" class="inputfield")
+							br
+							input#btn(type="submit" name="submit")
+				else
+					.post
+						h1 Please log in to add a post
+						form(method="get" action="/login")
+							button#btn2(type="submit" value="login" name="redirect") Log in
+
+
+		script.
+			function validate() {
+
+				if( document.forms.loginForm.title.value == "" ) {
+					alert( "Please add title here!" );
+					document.loginForm.title.focus() ;
+					return false;
+				}
+
+				if( document.forms.loginForm.content.value == "" ) {
+					alert( "Please add content post!" );
+					document.loginForm.content.focus() ;
+					return false;
+				}
+
+				return( true );
+			}

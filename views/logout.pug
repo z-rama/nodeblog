@@ -1,0 +1,13 @@
+html
+	head
+		title Blog Application
+		include ../style/pug/head-tags.pug
+
+	body#backgroundindex
+		include ../style/pug/header.pug 
+		button.button(onclick="location.href='/login';",style='vertical-align:middle')
+			span Log in
+		br
+		|  
+		button.button(onclick="location.href='/signup';",style='vertical-align:middle')
+			span Sign up

@@ -1,0 +1,65 @@
+/*profile*/
+#background-profile {
+  background: url(../img/cat-synth.jpg) no-repeat center fixed; 
+  background-size: cover;
+  padding-top: 20px;
+  min-height: 95%;
+  padding-bottom: 20px;
+}
+
+#name {
+  color: #f43691;
+  text-shadow: 1px 1px 2px white;
+  margin-right: 40px;
+  font-size: 50px;
+  margin-top: 5px;
+  text-align: right;
+}
+
+#profile-container {
+  display: flex;
+  width: 90%;
+  margin: auto;
+}
+
+#profile-posts {
+  flex: 3;
+  margin-bottom: 20px;
+}
+
+#profile-followers {
+  flex: 1;
+}
+
+#side {
+  background-color: white;
+  opacity: 0.95;
+  border-radius: 5px;
+  color: #f43691;
+  margin-top: 15px;
+  margin-left: 15px;
+  padding: 10px 20px;
+  border: 1px solid #f43691;
+}
+
+#btn2 {
+  background-color: #f43691;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  width: 75px;
+}
+
+#btn3 {
+  background-color: #f43691;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  width: 80px;
+}

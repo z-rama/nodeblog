@@ -1,0 +1,51 @@
+if user
+  nav.navbar.navbar-inverse#navbarcustom
+    .container-fluid
+      .navbar-header
+        a.navbar-brand(href='/') Skrrt
+      ul.nav.navbar-nav
+        li.active
+          a(href='/') Home
+        li.dropdown
+          a.dropdown-toggle(data-toggle='dropdown', href='#')
+            | Posts
+            span.caret
+          ul.dropdown-menu
+            li
+              a(href='/addpost') add Post
+            li
+              a(href='/allposts') all Posts
+        li
+          a(href='/profile/'+user.username) Profile
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href='/logout')
+            span.glyphicon.glyphicon-log-in
+            |  Logout
+
+else
+  nav.navbar.navbar-inverse#navbarcustom
+    .container-fluid
+      .navbar-header
+        a.navbar-brand(href='/') Skrrt
+      ul.nav.navbar-nav
+        li.active
+          a(href='/') Home
+        li.dropdown
+          a.dropdown-toggle(data-toggle='dropdown', href='#')
+            | Posts
+            span.caret
+          ul.dropdown-menu
+            li
+              a(href='/addpost') add Post
+            li
+              a(href='/allposts') all Posts
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href='/signup')
+            span.glyphicon.glyphicon-user
+            |  Sign Up
+        li
+          a(href='/login')
+            span.glyphicon.glyphicon-log-in
+            |  Login

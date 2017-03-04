@@ -1,0 +1,78 @@
+
+/*show posts page*/
+#backgroundShowPosts {
+  background: url(../img/evil-cat.jpg) no-repeat center fixed; 
+  background-size: cover;
+  padding-top: 20px;
+  min-height: 90%;
+}
+
+#containerShowPosts {
+  width: 60%;
+  margin: auto;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+}
+
+.post {
+  background-color: white;
+  opacity: 0.95;
+  border-radius: 5px;
+  color: #f43691;
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: 1px solid #f43691;
+}
+
+.post a {
+  margin: 15px 0px;
+  padding-bottom: 2px;
+  font-size: 30px;
+  color: #f43691;
+  text-decoration:none;
+}
+
+.post a:visited {
+  margin: 15px 0px;
+  padding-bottom: 2px;
+  font-size: 30px;
+  color: #f43691;
+  text-decoration:none;
+}
+
+.post a:hover {
+  color: #f43691;
+}
+
+.post h6 {
+  border-bottom: 1px solid grey;
+  margin: 15px 0px;
+  padding-bottom: 2px;
+}
+
+.commentbox {
+  background-color: #d2d2d2;
+  opacity: 0.95;
+  width: 90%;
+  color: #f43691;
+  margin: auto;
+  border-radius: 0px 0px 5px 5px;
+  padding: 0px 5px 5px 5px;
+  border: 1px solid #f43691;
+  border-top: 0;
+}
+
+.comment h6 {
+  margin-top: 0px;
+  border-top: 1px solid grey;
+  margin-bottom: 15px;
+}
+
+.comment:first-child h6 {
+  border-top: none;
+}
+/*show end*/
+
+.commentform {
+  padding: 10px;
+}
