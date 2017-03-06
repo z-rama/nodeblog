@@ -17,7 +17,12 @@
   },
   "homepage": "https://github.com/z-rama/nodeblog#readme",
   "dependencies": {
-    "express": "^4.14.1",
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.2",
+    "express-session": "^1.15.1",
+    "pg": "^6.1.2",
     "pkg.json": "^2.0.3"
   }
 }
